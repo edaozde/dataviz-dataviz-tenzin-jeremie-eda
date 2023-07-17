@@ -1,5 +1,5 @@
-# dataviz-dataviz-tenzin-jeremie-eda
-dataviz-dataviz-tenzin-jeremie-eda created by GitHub Classroom
+# dataviz-tenzin-jeremie-eda
+dataviz-tenzin-jeremie-eda created by GitHub Classroom
 
 ### Dataviz & API
 

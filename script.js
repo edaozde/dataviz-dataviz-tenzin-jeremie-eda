@@ -77,5 +77,8 @@ am5.ready(function () {
 
 
 //API 
+//1 est-ce qu'il existe une station dans le pays ?
+
+//2 fetch les stations du pays selectionné
 
 //Lecteur

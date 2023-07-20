@@ -32,8 +32,13 @@ am5.ready(function () {
     polygonSeries.mapPolygons.template.setAll({
         tooltipText: "{name}",
         toggleKey: "active",
-        interactive: true
+        interactive: true,
+        templateField: "polygonSettings"
     });
+
+    polygonSeries.mapPolygons.template.states.create("hover", {
+        fill: am5.color(0x677935)
+      });
 
     polygonSeries.mapPolygons.template.states.create("hover", {
         fill: root.interfaceColors.get("primaryButtonHover")
@@ -51,6 +56,8 @@ am5.ready(function () {
         }
         if (target.get("active")) {
             polygonSeries.zoomToDataItem(target.dataItem);
+            const country = target.dataItem.get("id");
+            changeColor(country)
         }
         else {
             chart.goHome();
@@ -73,6 +80,15 @@ am5.ready(function () {
     // Make stuff animate on load
     chart.appear(1000, 100);
 
+    const changeColor = (x) => {
+        polygonSeries.data.setAll([{
+            id: x,
+            polygonSettings: {
+                fill: am5.color(0xFF3C38)
+            }
+        }])
+    }
+
 }); // end am5.ready()
 
 
@@ -82,3 +98,4 @@ am5.ready(function () {
 //2 fetch les stations du pays selectionné
 
 //Lecteur
+

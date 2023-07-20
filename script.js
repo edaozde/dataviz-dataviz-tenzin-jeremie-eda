@@ -51,6 +51,10 @@ am5.ready(function () {
         }
         if (target.get("active")) {
             polygonSeries.zoomToDataItem(target.dataItem);
+            const countrycode = target.dataItem.get("id");
+            /* calling async function that is created underneath  */
+                   asyncCountry(countrycode);
+            
         }
         else {
             chart.goHome();
@@ -80,5 +84,13 @@ am5.ready(function () {
 //1 est-ce qu'il existe une station dans le pays ?
 
 //2 fetch les stations du pays selectionné
+
+
+const asyncCountry =async (countrycode) =>{
+    const response = await fetch("http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/"+ countrycode);
+    const radioWorld = await response.json();
+    console.log(radioWorld[1]);
+    return radioWorld[1];
+  }
 
 //Lecteur

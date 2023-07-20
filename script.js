@@ -32,8 +32,13 @@ am5.ready(function () {
     polygonSeries.mapPolygons.template.setAll({
         tooltipText: "{name}",
         toggleKey: "active",
-        interactive: true
+        interactive: true,
+        templateField: "polygonSettings"
     });
+
+    polygonSeries.mapPolygons.template.states.create("hover", {
+        fill: am5.color(0x677935)
+      });
 
     polygonSeries.mapPolygons.template.states.create("hover", {
         fill: root.interfaceColors.get("primaryButtonHover")
@@ -54,7 +59,7 @@ am5.ready(function () {
             const countrycode = target.dataItem.get("id");
             /* calling async function that is created underneath  */
                    asyncCountry(countrycode);
-            
+                   changeColor(countrycode);
         }
         else {
             chart.goHome();
@@ -77,6 +82,15 @@ am5.ready(function () {
     // Make stuff animate on load
     chart.appear(1000, 100);
 
+    const changeColor = (x) => {
+        polygonSeries.data.setAll([{
+            id: x,
+            polygonSettings: {
+                fill: am5.color(0xFF3C38)
+            }
+        }])
+    }
+
 }); // end am5.ready()
 
 
@@ -84,8 +98,6 @@ am5.ready(function () {
 //1 est-ce qu'il existe une station dans le pays ?
 
 //2 fetch les stations du pays selectionné
-
-
 const asyncCountry =async (countrycode) =>{
     const response = await fetch("http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/"+ countrycode);
     const radioWorld = await response.json();
@@ -94,3 +106,4 @@ const asyncCountry =async (countrycode) =>{
   }
 
 //Lecteur
+

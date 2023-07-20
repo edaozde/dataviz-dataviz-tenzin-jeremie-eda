@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Home Radio</title>
 
+    <!-- Scripts pour la carte-->
     <script src="https://cdn.amcharts.com/lib/5/index.js" defer></script>
     <script src="https://cdn.amcharts.com/lib/5/map.js" defer></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js" defer></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js" defer></script>
+
+    <!-- Scripts pour le lecteur-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -17,10 +22,22 @@
 
 <body>
     <!-- Carte -->
-    <div id="chartdiv"></div>
+    <div id="carte">
+        <div id="chartdiv"></div>
+    </div>
 
     <!-- Lecteur -->
-
+    <!-- remove `controls` attribute if you're designing a custom UI -->
+<div id="media-player">
+    <media-player
+title="Tears of Steel: 40 Years Later"
+src="https://media-files.vidstack.io/audio.mp3"
+controls
+>
+<media-outlet></media-outlet>
+</media-player>
+</div>
+  
 </body>
 
 </html>

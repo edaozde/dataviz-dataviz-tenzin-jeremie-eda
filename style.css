@@ -1,14 +1,39 @@
   /* Page générale */
+  body {
+    height: 100%;
+  }
 
-
-/* Carte */
-#chartdiv {
+  /* Carte */
+  #carte {
+    position: absolute;
     width: 100%;
-    height: 500px;
+    height: 100%;
+    border: 2px solid red;
+    /* just to show your wrapper */
+    flex: 1;
+    z-index: auto;
+
+  }
+
+  #chartdiv {
+    width: 100%;
+    height: 100%;
   }
 
   /* Lecteur */
 
-
-
+  #media-player {
+    position: fixed;
+    bottom: 0%;
+    width: 15%;
+    height: auto;
+    border: 2px solid red;
+    /* just to show your wrapper */
   
+    margin-right: auto;
+    margin-left: auto;
+    left: 0px;
+    right: 0px;
+
+    z-index: 7;
+  }

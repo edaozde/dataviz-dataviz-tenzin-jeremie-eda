@@ -98,31 +98,45 @@ am5.ready(function () {
 //1 est-ce qu'il existe une station dans le pays ?
 
 const countryStationCount = async (countrycode) => {
-    const response = await fetch(
-      "http://de1.api.radio-browser.info/json/countrycodes" //je dois récupèrer l'objet "stationcount"
-    );
-    const countryCodesData = await response.json();
-    const countryData = countryCodesData.find(
-      (data) => data.name === countrycode
-    );
-    let stationcount = 0;
-    if (countryData) {
-      stationcount = countryData.stationcount;
+  const response = await fetch(
+    "http://de1.api.radio-browser.info/json/countrycodes" //je dois récupèrer l'objet "stationcount"
+  );
+  const countryCodesData = await response.json();
+  const countryData = countryCodesData.find(
+    (data) => data.name === countrycode
+  );
+  let stationcount = 0;
+  if (countryData) {
+    stationcount = countryData.stationcount;
 
-  return {
-    stationcount: stationcount,
-    countrycode: countrycode,
-  }};
+    return {
+      stationcount: stationcount,
+      countrycode: countrycode,
+    };
+  }
 };
 
 //2 fetch les stations du pays selectionné
-const asyncCountry =async (countrycode) =>{
-    const response = await fetch("http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/"+ countrycode);
-    const radioWorld = await response.json();
-    const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
-    console.log(radioWorld[randomIndexSta].url);
-    return radioWorld[randomIndexSta].url;
-  }
+const asyncCountry = async (countrycode) => {
+  const response = await fetch(
+    "http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/" +
+      countrycode
+  );
+  const radioWorld = await response.json();
+  const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
 
- 
+  //URL
+  const randRadioUrl = radioWorld[randomIndexSta].url;
+  document.getElementById("lecteur").src = randRadioUrl;
+
+  //Radio name
+  const randRadioname = radioWorld[randomIndexSta].name;
+  console.log(randRadioname);
+  document.getElementById("lecteur").title = randRadioname;
+};
+
 //Lecteur
+
+//si erreur = relancer la fonction
+//lecteur doit jouer automatiquement
+//

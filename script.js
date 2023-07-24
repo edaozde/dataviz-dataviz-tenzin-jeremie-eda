@@ -101,8 +101,14 @@ am5.ready(function () {
 const asyncCountry =async (countrycode) =>{
     const response = await fetch("http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/"+ countrycode);
     const radioWorld = await response.json();
-    console.log(radioWorld[1]);
-    return radioWorld[1];
+  
+    
+        //console.log(radioWorld[1].url);
+       // return radioWorld[1].url;
+    const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
+    console.log(radioWorld[randomIndexSta].url);
+    return radioWorld[randomIndexSta].url;
+    
   }
 
 //Lecteur

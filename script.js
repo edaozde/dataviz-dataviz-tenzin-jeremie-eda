@@ -28,8 +28,8 @@ am5.ready(function () {
     am5map.MapPolygonSeries.new(root, {
       geoJSON: am5geodata_worldLow,
       //module pour desactiver l'interaction des pays si 0 sationcount (etape tableau avec countrycode sans stations, AQ de base et push les autres)
-    include: countriesIncluded
- //exclude: ["AQ", "FR"]
+      // include: countriesIncluded
+      exclude: ["AQ"]
     })
   );
 

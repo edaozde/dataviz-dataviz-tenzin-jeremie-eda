@@ -1,7 +1,6 @@
 //check station
 //code
 
-
 //Carte
 am5.ready(function () {
   // Create root element
@@ -28,8 +27,8 @@ am5.ready(function () {
     am5map.MapPolygonSeries.new(root, {
       geoJSON: am5geodata_worldLow,
       //module pour desactiver l'interaction des pays si 0 sationcount (etape tableau avec countrycode sans stations, AQ de base et push les autres)
-    include: countriesIncluded
- //exclude: ["AQ", "FR"]
+      // include: countriesIncluded
+      exclude: ["AQ"],
     })
   );
 
@@ -124,37 +123,39 @@ const countryStationCount = async (countrycode) => {
 
 //2 fetch les stations du pays selectionné
 const asyncCountry = async (countrycode) => {
-
-  const response = await fetch("http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/" + countrycode);
+  const response = await fetch(
+    "http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/" +
+      countrycode
+  );
 
   const radioWorld = await response.json();
 
   const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
-  const player = document.getElementById('lecteur');
+  const player = document.getElementById("lecteur");
 
   //URL
 
   //Lecteur
-  const radioUrlResolved = radioWorld[randomIndexSta].url_resolved
-  const radioUrl = radioWorld[randomIndexSta].url
-  const radioUrlDefault = "https://media-files.vidstack.io/audio.mp3"
+  const radioUrlResolved = radioWorld[randomIndexSta].url_resolved;
+  const radioUrl = radioWorld[randomIndexSta].url;
+  const radioUrlDefault = "https://media-files.vidstack.io/audio.mp3";
 
   player.src = radioUrlResolved || radioUrl || radioUrlDefault;
 
-  const imgFavIcon = document.getElementById("favicon")
+  const imgFavIcon = document.getElementById("favicon");
 
   //Radio name
   const randRadioName = radioWorld[randomIndexSta].name;
-  console.log(randRadioName)
+  console.log(randRadioName);
   player.title = randRadioName;
-  document.getElementById('titre-radio').innerText = randRadioName;
-
+  document.getElementById("titre-radio").innerText = randRadioName;
 
   //favicone
-  const defaultFavicon = "https://upload.wikimedia.org/wikipedia/commons/e/e5/Mire_de_RTF_T%C3%A9l%C3%A9vision_Alger.jpg"
-  const randRadioIcone = radioWorld[randomIndexSta].favicon
+  const defaultFavicon =
+    "https://upload.wikimedia.org/wikipedia/commons/e/e5/Mire_de_RTF_T%C3%A9l%C3%A9vision_Alger.jpg";
+  const randRadioIcone = radioWorld[randomIndexSta].favicon;
 
-  console.log(randRadioIcone)
+  console.log(randRadioIcone);
   imgFavIcon.src = randRadioIcone || defaultFavicon;
 };
 
@@ -172,7 +173,6 @@ const arrayCountriesStationCount = async () => {
 };
 
 arrayCountriesStationCount();
-
 
 //Lecteur
 

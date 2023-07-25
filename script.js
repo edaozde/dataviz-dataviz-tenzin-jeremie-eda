@@ -28,7 +28,7 @@ am5.ready(function () {
       geoJSON: am5geodata_worldLow,
       //module pour desactiver l'interaction des pays si 0 sationcount (etape tableau avec countrycode sans stations, AQ de base et push les autres)
       //include: countriesIncluded
-      exclude: ["AQ"]
+      exclude: ["AQ"],
     })
   );
 
@@ -140,7 +140,7 @@ const asyncCountry = async (countrycode) => {
   const radioUrl = radioWorld[randomIndexSta].url;
   const radioUrlDefault = "https://media-files.vidstack.io/audio.mp3";
 
-  player.src = radioUrlResolved || radioUrl || radioUrlDefault;
+  player.sgc = radioUrlResolved || radioUrl || radioUrlDefault;
 
   const imgFavIcon = document.getElementById("favicon");
 
@@ -172,7 +172,7 @@ const arrayCountriesStationCount = async () => {
   return countriesStationCount;
 };
 
-arrayCountriesStationCount();
+const countryIncluded = arrayCountriesStationCount();
 
 //Lecteur
 

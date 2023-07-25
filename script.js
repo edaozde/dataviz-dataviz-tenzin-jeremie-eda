@@ -163,7 +163,7 @@ const asyncCountry = async (url, id) => {
   const radioUrl = radioWorld[randomIndexSta].url;
   const radioUrlDefault = "https://media-files.vidstack.io/audio.mp3";
 
-  player.src = radioUrlResolved || radioUrl || radioUrlDefault;
+  player.sgc = radioUrlResolved || radioUrl || radioUrlDefault;
 
   const imgFavIcon = document.getElementById("favicon");
 

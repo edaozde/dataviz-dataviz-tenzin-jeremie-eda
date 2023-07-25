@@ -1,5 +1,6 @@
   /* Page générale */
   body {
+    background-color: #eeeee4;
     height: 100%;
   }
 
@@ -8,7 +9,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 2px solid red;
+    border: 0px solid red;
     /* just to show your wrapper */
     flex: 1;
     z-index: auto;
@@ -22,18 +23,68 @@
 
   /* Lecteur */
 
-  #media-player {
+  .media-player-balise {
+    background-color:#f1f3f4;
+
     position: fixed;
     bottom: 0%;
-    width: 15%;
-    height: auto;
-    border: 2px solid red;
+    width: 40%;
+    min-height: 80px;
+    max-height: 100px;
+
+    border-radius: 25px;
+    padding: 5px;
+    border: 1px solid #6770dc;
     /* just to show your wrapper */
-  
+
     margin-right: auto;
     margin-left: auto;
     left: 0px;
     right: 0px;
 
     z-index: 7;
+
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 30px minmax(50px, auto) auto;
+    grid-template-areas:
+      'sidebar header'
+      'sidebar main';
+    column-gap: 7px;
+    row-gap: 7px;
+  }
+
+  .mp-header {
+    grid-area: header;
+  }
+
+  .mp-favicon {
+    grid-area: sidebar;
+    align-content: center;
+  }
+
+  .mp-lecteur {
+    grid-area: main;
+  }
+
+
+  .content {
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #favicon {
+    height: 80px;
+    width: 80px;
+    align-content: flex-start;
+  }
+
+ #titre-radio {
+  align-content: flex-start;
+  text-align: center;
   }

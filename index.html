@@ -13,6 +13,12 @@
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js" defer></script>
 
     <!-- Scripts pour le lecteur-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/base.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buttons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buffering.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/tooltips.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/live.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/sliders.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vidstack/styles/defaults.min.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.js"></script>
 
@@ -27,17 +33,48 @@
     </div>
 
     <!-- Lecteur -->
-    <!-- remove `controls` attribute if you're designing a custom UI -->
-<div id="media-player">
-    <media-player id="lecteur"
-title="Tears of Steel: 40 Years Later"
-src="https://media-files.vidstack.io/audio.mp3"
-controls
->
-<media-outlet></media-outlet>
-</media-player>
-</div>
-  
+
+<!-- <div class="media-player-balise">
+
+    <div class="favicon-flexbox">
+        <img id="favicon"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/RFI_logo_2013.svg/langfr-300px-RFI_logo_2013.svg.png">
+        </img>
+    </div>
+
+    <div class="lecteur-titre-flexbox">
+        <media-player id="lecteur" title="Tears of Steel: 40 Years Later"
+            src="https://media-files.vidstack.io/audio.mp3" controls autoplay load="idle">
+            <media-outlet></media-outlet>
+        </media-player>
+    </div>
+
+</div> -->
+
+<div class="media-player-balise">
+    <header class="mp-header">
+      <div class="content">
+        <p id="titre-radio">Titre de la radio</p>
+      </div>
+    </header>
+    <aside class="mp-favicon">
+      <div class="content">
+        <img id="favicon"
+            src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Mire_de_RTF_T%C3%A9l%C3%A9vision_Alger.jpg">
+        </img>
+      </div>
+    </aside>
+    <main class="mp-lecteur">
+      <div class="content">
+        <media-player id="lecteur" title="Tears of Steel: 40 Years Later"
+            src="https://media-files.vidstack.io/audio.mp3"
+             controls autoplay load="idle">
+            <media-outlet></media-outlet>
+        </media-player>
+      </div>
+    </main>
+  </div>
+
 </body>
 
 </html>

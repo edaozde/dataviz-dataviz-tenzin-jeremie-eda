@@ -3,12 +3,12 @@
 }
 
 .map__image{
-    width: 80%;
-    float: left;
+    height: 100%;
 }
 .map__image svg{
-    width: 100%;
+height: 100%;
 }
+
 .map__image path{
     fill: #bdeb92;
     stroke: #FFF;

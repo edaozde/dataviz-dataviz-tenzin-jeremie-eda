@@ -128,7 +128,7 @@ const asyncCountry = async (countrycode) => {
   const response = await fetch("http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/" + countrycode);
 
   const radioWorld = await response.json();
-  
+
   const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
   const player = document.getElementById('lecteur');
 
@@ -139,7 +139,7 @@ const asyncCountry = async (countrycode) => {
   const radioUrl = radioWorld[randomIndexSta].url
   const radioUrlDefault = "https://media-files.vidstack.io/audio.mp3"
 
-  player.src = radioUrlResolved || randRadioUrl || radioUrlDefault;
+  player.src = radioUrlResolved || radioUrl || radioUrlDefault;
 
   const imgFavIcon = document.getElementById("favicon")
 
@@ -157,6 +157,22 @@ const asyncCountry = async (countrycode) => {
   console.log(randRadioIcone)
   imgFavIcon.src = randRadioIcone || defaultFavicon;
 };
+
+const arrayCountriesStationCount = async () => {
+  const response = await fetch(
+    "http://de1.api.radio-browser.info/json/countrycodes"
+  );
+  const countryCodesData = await response.json();
+
+  const countriesStationCount = countryCodesData.map(
+    (countryData) => countryData.name
+  );
+  console.log(countriesStationCount);
+  return countriesStationCount;
+};
+
+arrayCountriesStationCount();
+
 
 //Lecteur
 

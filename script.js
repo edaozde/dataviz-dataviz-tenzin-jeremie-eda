@@ -123,6 +123,7 @@ const asyncCountry = async (countrycode) => {
       countrycode
   );
   const radioWorld = await response.json();
+
   const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
 
   //URL
@@ -134,7 +135,20 @@ const asyncCountry = async (countrycode) => {
   console.log(randRadioname);
   document.getElementById("lecteur").title = randRadioname;
 };
+const arrayCountriesStationCount = async () => {
+  const response = await fetch(
+    "http://de1.api.radio-browser.info/json/countrycodes"
+  );
+  const countryCodesData = await response.json();
 
+  const countriesStationCount = countryCodesData.map(
+    (countryData) => countryData.name
+  );
+  console.log(countriesStationCount);
+  return countriesStationCount;
+};
+
+arrayCountriesStationCount();
 //Lecteur
 
 //si erreur = relancer la fonction

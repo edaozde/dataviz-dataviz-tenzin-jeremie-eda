@@ -1,7 +1,8 @@
   /* Page générale */
   body {
-    background-color: #eeeee4;
+    background-color: hsl(162, 23%, 91%);
     height: 100%;
+    background-image: url(/Ressources/10603634_42784.jpg);
   }
 
   /* Carte */

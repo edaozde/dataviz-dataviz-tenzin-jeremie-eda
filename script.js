@@ -44,7 +44,9 @@ am5.ready(function () {
       geoJSON: am5geodata_worldLow,
       //module pour desactiver l'interaction des pays si 0 sationcount (etape tableau avec countrycode sans stations, AQ de base et push les autres)
       //include: value
-      exclude: ["AQ"]
+      exclude: ["AQ"],
+      fill: am5.color(0xd9ead3),
+      stroke: am5.color(0x999999)
     })
   );
 

@@ -1,5 +1,7 @@
 //check station
 //code
+const urlStationByCC = "http://all.api.radio-browser.info/json/stations/bycountrycodeexact/"
+const urlStationByLanguage = "http://all.api.radio-browser.info/json/stations/bylanguage/"
 
 //Carte
 am5.ready(function () {
@@ -21,16 +23,34 @@ am5.ready(function () {
     })
   );
 
-  // Create main polygon series for countries
-  // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
+
+  const arrayCountriesStationCount = async () => {
+    const response = await fetch(
+      "http://de1.api.radio-browser.info/json/countrycodes"
+    );
+    const countryCodesData = await response.json();
+
+    const countriesStationCount = countryCodesData.map(
+      (countryData) => countryData.name
+    );
+    console.log("in func", countriesStationCount);
+    return countriesStationCount;
+  };
+
+  //arrayCountriesStationCount().then(value => { });
+
   var polygonSeries = chart.series.push(
     am5map.MapPolygonSeries.new(root, {
       geoJSON: am5geodata_worldLow,
       //module pour desactiver l'interaction des pays si 0 sationcount (etape tableau avec countrycode sans stations, AQ de base et push les autres)
-      //include: countriesIncluded
-      exclude: ["AQ"],
+      //include: value
+      exclude: ["AQ"]
     })
   );
+
+  // Create main polygon series for countries
+  // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
+
 
   polygonSeries.mapPolygons.template.setAll({
     tooltipText: "{name}",
@@ -58,8 +78,10 @@ am5.ready(function () {
       previousPolygon.set("active", false);
     }
     if (target.get("active")) {
+
       polygonSeries.zoomToDataItem(target.dataItem);
       const countrycode = target.dataItem.get("id");
+
       countryStationCount(countrycode).then((stationCountData) => {
         console.log(
           `Number of stations in ${countrycode}:`,
@@ -67,7 +89,7 @@ am5.ready(function () {
         );
       });
       /* calling async function that is created underneath  */
-      asyncCountry(countrycode);
+      asyncCountry(urlStationByCC, countrycode);
       changeColor(countrycode);
     } else {
       chart.goHome();
@@ -104,7 +126,7 @@ am5.ready(function () {
 
 const countryStationCount = async (countrycode) => {
   const response = await fetch(
-    "http://de1.api.radio-browser.info/json/countrycodes" //je dois récupèrer l'objet "stationcount"
+    "http://all.api.radio-browser.info/json/countrycodes" //je dois récupèrer l'objet "stationcount"
   );
   const countryCodesData = await response.json();
   const countryData = countryCodesData.find(
@@ -122,10 +144,9 @@ const countryStationCount = async (countrycode) => {
 };
 
 //2 fetch les stations du pays selectionné
-const asyncCountry = async (countrycode) => {
+const asyncCountry = async (url, id) => {
   const response = await fetch(
-    "http://de1.api.radio-browser.info/json/stations/bycountrycodeexact/" +
-      countrycode
+    url + id
   );
 
   const radioWorld = await response.json();
@@ -158,21 +179,6 @@ const asyncCountry = async (countrycode) => {
   console.log(randRadioIcone);
   imgFavIcon.src = randRadioIcone || defaultFavicon;
 };
-
-const arrayCountriesStationCount = async () => {
-  const response = await fetch(
-    "http://de1.api.radio-browser.info/json/countrycodes"
-  );
-  const countryCodesData = await response.json();
-
-  const countriesStationCount = countryCodesData.map(
-    (countryData) => countryData.name
-  );
-  console.log(countriesStationCount);
-  return countriesStationCount;
-};
-
-const countryIncluded = arrayCountriesStationCount();
 
 //Lecteur
 

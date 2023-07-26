@@ -136,11 +136,16 @@ const wrapper = document.getElementById('topnav');
     const docBtnSelected = document.getElementById(BtnSelected)
     docBtnSelected.className = "active"
 
-    if (BtnSelected == "BtnFR") {
-      asyncCountry(urlStationByLanguage, "french").then(IdCC => changeColor(IdCC))
+    if (BtnSelected == "BtnEN") {
+      asyncCountry(urlStationByLanguage, "english").then(IdCC => changeColor(IdCC))
     } else if (BtnSelected == "BtnDE") {
-      //a completer
-      console.log("coucou")
+      asyncCountry(urlStationByLanguage, "german").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnES") {
+      asyncCountry(urlStationByLanguage, "spanish").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnZH") {
+      asyncCountry(urlStationByLanguage, "chinese").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnFR") {
+      asyncCountry(urlStationByLanguage, "french").then(IdCC => changeColor(IdCC))
     }
 })
 

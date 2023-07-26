@@ -87,7 +87,7 @@ am5.ready(function () {
       });
       /* calling async function that is created underneath  */
       asyncCountry (urlStationByCC, countrycode).then(IdCC => changeColor(IdCC))
-
+      cleatButtonLanguage()
     } else {
       chart.goHome();
     }
@@ -119,30 +119,29 @@ am5.ready(function () {
 
 
 //Bouton 
-const BtnFR = document.getElementById("BtnFR")
-const BtnEN = document.getElementById("BtnEN")
-const BtnES = document.getElementById("BtnES")
-const BtnIT = document.getElementById("BtnIT")
 
+const allBtn = document.querySelectorAll('#topnav a')
+const wrapper = document.getElementById('topnav');
 
-BtnFR.addEventListener("click", () => {
-  const idLanguage = "french"
-  BtnFR.className = "active"
-  asyncCountry (urlStationByLanguage, idLanguage).then(IdCC => changeColor(IdCC))
+  wrapper.addEventListener('click', (event) => {
+    const isButton = (event.target.nodeName) === 'A';
+    console.log(event.target.nodeName)
+    if (!isButton) {
+      return;
+    }
 
-  BtnEN.className = ""
-  BtnES.className = ""
-  BtnIT.className = ""
-})
+    allBtn.forEach(bouton => bouton.className = "");
+    const BtnSelected = event.target.id;
 
-BtnEN.addEventListener("click", () => {
-  const idLanguage = "english"
-  BtnEN.className = "active"
-asyncCountry (urlStationByLanguage, idLanguage).then(IdCC => changeColor(IdCC))
+    const docBtnSelected = document.getElementById(BtnSelected)
+    docBtnSelected.className = "active"
 
-  BtnFR.className = ""
-  BtnES.className = ""
-  BtnIT.className = ""
+    if (BtnSelected == "BtnFR") {
+      asyncCountry(urlStationByLanguage, "french").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnDE") {
+      //a completer
+      console.log("coucou")
+    }
 })
 
 
@@ -218,3 +217,17 @@ const asyncCountry = async (url, id, data = {}) => {
   const randRadioCC = radioWorld[randomIndexSta].countrycode
   return randRadioCC
 };
+
+
+// language count
+
+const rankLanguage = async () => {
+  const response = await fetch(
+    "http://all.api.radio-browser.info/json/languages"
+  );
+
+  const listLanguage = await response.json();
+  console.log(listLanguage.sort((a, b) => parseFloat(b.stationcount) - parseFloat(a.stationcount)))
+}
+
+rankLanguage()

@@ -1,9 +1,7 @@
 //check station
-//code
-const urlStationByCC =
-  "http://all.api.radio-browser.info/json/stations/bycountrycodeexact/";
-const urlStationByLanguage =
-  "http://all.api.radio-browser.info/json/stations/bylanguage/";
+//URL de fetch 
+const urlStationByCC = "http://all.api.radio-browser.info/json/stations/bycountrycodeexact/"
+const urlStationByLanguage = "http://all.api.radio-browser.info/json/stations/bylanguage/"
 
 //Carte
 am5.ready(function () {
@@ -43,11 +41,9 @@ am5.ready(function () {
   var polygonSeries = chart.series.push(
     am5map.MapPolygonSeries.new(root, {
       geoJSON: am5geodata_worldLow,
-      //module pour desactiver l'interaction des pays si 0 sationcount (etape tableau avec countrycode sans stations, AQ de base et push les autres)
-      //include: value
       exclude: ["AQ"],
       fill: am5.color(0xd9ead3),
-      stroke: am5.color(0x999999),
+      stroke: am5.color(0x444444)
     })
   );
 
@@ -90,8 +86,8 @@ am5.ready(function () {
         );
       });
       /* calling async function that is created underneath  */
-      asyncCountry(urlStationByCC, countrycode);
-      changeColor(countrycode);
+      asyncCountry (urlStationByCC, countrycode).then(IdCC => changeColor(IdCC))
+
     } else {
       chart.goHome();
     }
@@ -120,6 +116,36 @@ am5.ready(function () {
       },
     ]);
   };
+
+
+//Bouton 
+const BtnFR = document.getElementById("BtnFR")
+const BtnEN = document.getElementById("BtnEN")
+const BtnES = document.getElementById("BtnES")
+const BtnIT = document.getElementById("BtnIT")
+
+
+BtnFR.addEventListener("click", () => {
+  const idLanguage = "french"
+  BtnFR.className = "active"
+  asyncCountry (urlStationByLanguage, idLanguage).then(IdCC => changeColor(IdCC))
+
+  BtnEN.className = ""
+  BtnES.className = ""
+  BtnIT.className = ""
+})
+
+BtnEN.addEventListener("click", () => {
+  const idLanguage = "english"
+  BtnEN.className = "active"
+asyncCountry (urlStationByLanguage, idLanguage).then(IdCC => changeColor(IdCC))
+
+  BtnFR.className = ""
+  BtnES.className = ""
+  BtnIT.className = ""
+})
+
+
 }); // end am5.ready()
 
 //API
@@ -144,11 +170,25 @@ const countryStationCount = async (countrycode) => {
   }
 };
 
-//2 fetch les stations du pays selectionné
-const asyncCountry = async (url, id) => {
-  const response = await fetch(url + id);
+//2 fetch les stations du pays ou langue selectionné
+const asyncCountry = async (url, id, data = {}) => {
+
+  let response;
+
+  try {
+  response = await fetch( url + id, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
+  } catch (error) {
+    console.log('There was an error', error);
+  }
 
   const radioWorld = await response.json();
+
 
   const randomIndexSta = Math.floor(Math.random() * radioWorld.length);
   const player = document.getElementById("lecteur");
@@ -162,25 +202,19 @@ const asyncCountry = async (url, id) => {
 
   player.src = radioUrlResolved || radioUrl || radioUrlDefault;
 
-  const imgFavIcon = document.getElementById("favicon");
-
   //Radio name
   const randRadioName = radioWorld[randomIndexSta].name;
-  console.log(randRadioName);
   player.title = randRadioName;
   document.getElementById("titre-radio").innerText = randRadioName;
 
   //favicone
+  const imgFavIcon = document.getElementById("favicon");
   const defaultFavicon =
     "https://upload.wikimedia.org/wikipedia/commons/e/e5/Mire_de_RTF_T%C3%A9l%C3%A9vision_Alger.jpg";
   const randRadioIcone = radioWorld[randomIndexSta].favicon;
-
-  console.log(randRadioIcone);
   imgFavIcon.src = randRadioIcone || defaultFavicon;
+
+  //Map 
+  const randRadioCC = radioWorld[randomIndexSta].countrycode
+  return randRadioCC
 };
-
-//Lecteur
-
-//si erreur = relancer la fonction
-//lecteur doit jouer automatiquement
-//

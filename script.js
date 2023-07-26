@@ -1,7 +1,9 @@
 //check station
 //code
-const urlStationByCC = "http://all.api.radio-browser.info/json/stations/bycountrycodeexact/"
-const urlStationByLanguage = "http://all.api.radio-browser.info/json/stations/bylanguage/"
+const urlStationByCC =
+  "http://all.api.radio-browser.info/json/stations/bycountrycodeexact/";
+const urlStationByLanguage =
+  "http://all.api.radio-browser.info/json/stations/bylanguage/";
 
 //Carte
 am5.ready(function () {
@@ -22,7 +24,6 @@ am5.ready(function () {
       projection: am5map.geoMercator(),
     })
   );
-
 
   const arrayCountriesStationCount = async () => {
     const response = await fetch(
@@ -46,13 +47,12 @@ am5.ready(function () {
       //include: value
       exclude: ["AQ"],
       fill: am5.color(0xd9ead3),
-      stroke: am5.color(0x999999)
+      stroke: am5.color(0x999999),
     })
   );
 
   // Create main polygon series for countries
   // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
-
 
   polygonSeries.mapPolygons.template.setAll({
     tooltipText: "{name}",
@@ -80,7 +80,6 @@ am5.ready(function () {
       previousPolygon.set("active", false);
     }
     if (target.get("active")) {
-
       polygonSeries.zoomToDataItem(target.dataItem);
       const countrycode = target.dataItem.get("id");
 
@@ -147,9 +146,7 @@ const countryStationCount = async (countrycode) => {
 
 //2 fetch les stations du pays selectionné
 const asyncCountry = async (url, id) => {
-  const response = await fetch(
-    url + id
-  );
+  const response = await fetch(url + id);
 
   const radioWorld = await response.json();
 
@@ -163,7 +160,7 @@ const asyncCountry = async (url, id) => {
   const radioUrl = radioWorld[randomIndexSta].url;
   const radioUrlDefault = "https://media-files.vidstack.io/audio.mp3";
 
-  player.sgc = radioUrlResolved || radioUrl || radioUrlDefault;
+  player.src = radioUrlResolved || radioUrl || radioUrlDefault;
 
   const imgFavIcon = document.getElementById("favicon");
 

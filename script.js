@@ -146,7 +146,22 @@ const wrapper = document.getElementById('topnav');
       asyncCountry(urlStationByLanguage, "chinese").then(IdCC => changeColor(IdCC))
     } else if (BtnSelected == "BtnFR") {
       asyncCountry(urlStationByLanguage, "french").then(IdCC => changeColor(IdCC))
+    }else if (BtnSelected == "BtnIT") {
+      asyncCountry(urlStationByLanguage, "italian").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnEL") {
+      asyncCountry(urlStationByLanguage, "greek").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnRU") {
+      asyncCountry(urlStationByLanguage, "russian").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnPL") {
+      asyncCountry(urlStationByLanguage, "polish").then(IdCC => changeColor(IdCC))
+    } else if (BtnSelected == "BtnPT") {
+      asyncCountry(urlStationByLanguage, "portuguese").then(IdCC => changeColor(IdCC))
+    } else  if (BtnSelected == "BtnNL") {
+      asyncCountry(urlStationByLanguage, "dutch").then(IdCC => changeColor(IdCC))
+    } else {
+      console.log("error")
     }
+  
 })
 
 

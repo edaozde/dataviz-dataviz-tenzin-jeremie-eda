@@ -3,7 +3,7 @@ dataviz-tenzin-jeremie-eda created by GitHub Classroom
 
 ### Dataviz & API
 
-Ce projet a pour objectif de développer une application web qui permette de visualiser des données de façon dynamique.
+Bienvenue dans Radio Monde, un projet de dataviz développé en groupe de 3. Notre application utilise l'API de Radio Browser pour créer une expérience unique d'écoute de radios du monde entier. Sur une carte interactive au format SVG, les utilisateurs peuvent cliquer sur un pays, déclenchant la lecture aléatoire d'une radio de ce pays.
 
 
 

@@ -3,7 +3,7 @@ dataviz-tenzin-jeremie-eda created by GitHub Classroom
 
 ### Dataviz & API
 
-Bienvenue dans Radio Monde, un projet de dataviz développé en groupe de 3. Notre application utilise l'API de Radio Browser pour créer une expérience unique d'écoute de radios du monde entier. Sur une carte interactive au format SVG, les utilisateurs peuvent cliquer sur un pays, déclenchant la lecture aléatoire d'une radio de ce pays.
+Bienvenue dans Home Radio, un projet de dataviz développé en groupe de 3 dans le cadre de notre formation à l'Ada Tech school. Notre application utilise l'API de Radio Browser pour créer une expérience unique d'écoute de radios du monde entier. Sur une carte interactive au format SVG, les utilisateurs peuvent cliquer sur un pays, déclenchant la lecture aléatoire d'une radio de ce pays.
 
 
 
@@ -13,7 +13,7 @@ Bienvenue dans Radio Monde, un projet de dataviz développé en groupe de 3. Not
 
 ## **Contraintes générales**
 
-- Langage: libre (selon le niveau choisi)
+- Langage: JavaScript
 - Durée de la séquence: 2 semaines
 - 3 personnes
 

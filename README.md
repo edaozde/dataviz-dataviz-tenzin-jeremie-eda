@@ -6,22 +6,22 @@ dataviz-tenzin-jeremie-eda created by GitHub Classroom
 Bienvenue dans Home Radio, un projet de dataviz développé en groupe de 3 dans le cadre de notre formation à l'Ada Tech school. Notre application utilise l'API de Radio Browser pour créer une expérience unique d'écoute de radios du monde entier. Sur une carte interactive au format SVG, les utilisateurs peuvent cliquer sur un pays, déclenchant la lecture aléatoire d'une radio de ce pays.
 
 
-## **Fonctionnalités
+## Fonctionnalités
 - Carte interactive du monde au format SVG.
 - Lecture aléatoire de radios par pays.
 - Lecteur audio intégré.
 
-## **Aperçu du site
+## Aperçu du site
 
 <img width="1470" alt="Capture d’écran 2023-11-17 à 10 18 37" src="https://github.com/edaozde/dataviz-dataviz-tenzin-jeremie-eda/assets/80428208/04e0bce7-fa8b-4d15-8de2-4f5157b452aa">
 
-## **Contraintes générales**
+## Contraintes générales**
 
 - Langage: JavaScript
 - Durée de la séquence: 2 semaines
 - 3 personnes
 
-## **Objectifs globaux pédagogiques**
+## Objectifs globaux pédagogiques**
 
 - Découvrir le traitement de données en temps réel
 - Explorer des possibilités d’animation web
